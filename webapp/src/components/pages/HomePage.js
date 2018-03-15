@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import logo from '../../logo.svg';
 import {Router, route, indexRoute, hashHistory} from "react-router"
