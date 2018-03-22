@@ -1,6 +1,3 @@
-/**
- * Created by johnathansaunders on 3/3/18.
- */
 import React from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
@@ -17,30 +14,29 @@ export default class NavBar extends React.Component {
     handleToggle(){
         this.setState({open: !this.state.open});
     }
-    handleClose(){
-        this.setState({open: false});
-    }
+
 
     render () {
-
         return (
             <div>
                 <AppBar
-                    title="Rowan Parking"
+                    title={this.props.title}
                     iconClassNameRight="muidocs-icon-navigation-expand-more"
                     onLeftIconButtonClick={()=>this.handleToggle()}
-
                 />
                 <Drawer docked={false}
                         width={200}
                         open={this.state.open}
                         onRequestChange={(open) => this.setState({open})}
-                        >
-                    <MenuItem onClick={()=> window.location.assign('/')}>Home</MenuItem>
-                    <MenuItem onClick={()=> window.location.assign('/login')}>Login Page</MenuItem>
+                >
+                    {( this.props.menuItems != null &&  this.props.menuItems.length > 0)?
+
+                        this.props.menuItems.map((item, index) => (
+                            <MenuItem onClick={() => window.location.assign(item.path)}>{item.title}</MenuItem>
+                        )) : 'null'
+                    }
                 </Drawer>
-        </div>
+            </div>
         )
     }
-
 }

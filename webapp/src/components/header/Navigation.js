@@ -5,7 +5,12 @@ import NavBar from '../CustomComponets/NavBar'
 export default class Navigation extends React.Component {
     constructor() {
         super();
-
+        this.state = {menuItems: [
+                {title:'Home Page', path:'/'},
+                {title:'Login', path:'/login'},
+                {title:'Profile', path:'/profile'},
+                {title:'Parking Lots', path:'/parking-lots'}
+        ]};
     }
 
     componentWillMount() {
@@ -24,10 +29,11 @@ export default class Navigation extends React.Component {
 
 
 
-
         return (
             <div  >
-                <NavBar/>
+                <NavBar
+                    title='Rowan Parking'
+                    menuItems={this.state.menuItems}/>
             </div>
         )
     }
