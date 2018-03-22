@@ -2,7 +2,6 @@ language: node_js
 node_js:
   - "8"
 script:
-  - npm run lint
-  - npm run test:cov
+  - npm run 
 after_success:
-  - npm run coverage
+  - npm run build
