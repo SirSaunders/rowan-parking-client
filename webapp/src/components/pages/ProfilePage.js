@@ -6,7 +6,7 @@ import '../../App.css';
 
 
 
-export default class LoginPage extends React.Component {
+export default class ProfilePage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -16,7 +16,7 @@ export default class LoginPage extends React.Component {
 
 
         return <div className="App">
-                Login page
+                 Profile page
             </div>
 
 
