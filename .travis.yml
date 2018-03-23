@@ -4,6 +4,5 @@ node_js:
 script:
   - cd webapp
   - npm install
-  - npm start
-after_success:
   - npm run build
+
