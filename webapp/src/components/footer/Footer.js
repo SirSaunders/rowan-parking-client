@@ -7,7 +7,7 @@ export default class Footer extends React.Component {
             left: "0",
             bottom: "0",
             padding:"5px",
-            height: "50px",
+            height: "30px",
             width: "100%",
             backgroundColor:"#3f51b5",
             zIndex:"9999",
