@@ -1,10 +1,4 @@
-import React from 'react'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
-import FlatButton from 'material-ui/FlatButton';
-import NavBarBtns from './NavbarBtns';
+import React from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
@@ -15,28 +9,29 @@ export default class ParkingLotCard extends React.Component {
 
 
     render () {
+
+
+        const style = {
+            width: '80%',
+            marginTop:'50px',
+            marginLeft: "auto",
+            marginRight: "auto"
+        };
+
+
         return (
-            <div>
-
-                <Card>
-                <CardMedia
-                    overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
-                >
-                    <img src="images/nature-600-337.jpg" alt="" />
-                </CardMedia>
-                <CardTitle title="Card title" subtitle="Card subtitle" />
-                <CardText>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                    Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                    Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                </CardText>
-                <CardActions>
-                    <FlatButton label="Action1" />
-                    <FlatButton label="Action2" />
-                </CardActions>
-            </Card>
-
+            <div style={style}>
+                <Card >
+                    <CardMedia overlay={<CardTitle title={'Monkey'} subtitle={'Close up'} />}>
+                        <img className="Crop-Fit" height='400px'  src={'http://images.panda.org/assets/images/pages/welcome/orangutan_1600x1000_279157.jpg'} alt="" />
+                    </CardMedia>
+                    <CardText>
+                        {'this is a monkey woo'}
+                    </CardText>
+                    <CardActions>
+                        <FlatButton label={'click me'} onClick={()=>alert('clicked')}/>
+                    </CardActions>
+                </Card>
             </div>
         )
     }
