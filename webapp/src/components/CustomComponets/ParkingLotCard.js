@@ -2,6 +2,8 @@ import React from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
+import '../../css/ParkingLotCard.css';
+
 export default class ParkingLotCard extends React.Component {
     constructor(props) {
         super(props);
@@ -11,16 +13,11 @@ export default class ParkingLotCard extends React.Component {
     render () {
 
 
-        const style = {
-            width: '80%',
-            marginTop:'50px',
-            marginLeft: "auto",
-            marginRight: "auto"
-        };
+
 
 
         return (
-            <div style={style}>
+            <div className="Card">
                 <Card >
                     <CardMedia overlay={<CardTitle title={'Monkey'} subtitle={'Close up'} />}>
                         <img className="Crop-Fit" height='400px'  src={'http://images.panda.org/assets/images/pages/welcome/orangutan_1600x1000_279157.jpg'} alt="" />
