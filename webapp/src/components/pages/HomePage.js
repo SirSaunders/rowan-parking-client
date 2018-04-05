@@ -1,10 +1,10 @@
 
 import React, { Component } from 'react';
-import logo from '../../logo.svg';
+import logo from '../../utils/logo.svg';
 import {Router, route, indexRoute, hashHistory} from "react-router"
 import '../../css/App.css';
-
-
+import Video from '../CustomComponets/Video'
+import About from '../CustomComponets/About'
 
 
 export default class HomePage extends React.Component {
@@ -17,13 +17,13 @@ export default class HomePage extends React.Component {
 
 
         return <div className="App">
-            <header className="App-header">
+
+            <Video/>
+        <div> <header >
                 <img src={logo} className="App-logo" alt="logo" />
-                <h1 className="App-title">Welcome to React</h1>
-            </header>
-            <p className="App-intro">
-                To get started, edit <code>src/App.js</code> and save to reload.
-            </p>
+                <h1 className="App-title">Welcome to Rowan Parking Website</h1>
+            </header> </div>
+            <About/>
         </div>
 
 
