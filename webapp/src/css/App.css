@@ -3,10 +3,9 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 300px;
+  height: 330px;
   width: auto;
-  box-shadow: white;
+  box-shadow: black;
 }
 
 .App-header {
