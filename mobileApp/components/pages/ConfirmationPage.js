@@ -9,7 +9,7 @@ export default class ConfirmationPage extends React.Component {
 
     }
     static navigationOptions = {
-        title: 'ConfirmationPage',
+        title: 'ProfilePage',
         headerLeft: null,
     };
 

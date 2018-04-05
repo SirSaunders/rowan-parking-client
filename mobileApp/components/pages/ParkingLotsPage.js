@@ -19,7 +19,7 @@ export default class ParkingLotsPage extends React.Component {
                 <Text>Parking lotsr Screen</Text>
                 <Button
                 title="Pick a lot"
-                onPress={() => this.props.navigation.navigate('ConfirmationPage')}
+                onPress={() => this.props.navigation.navigate('ProfilePage')}
                 />
             </View>
         );

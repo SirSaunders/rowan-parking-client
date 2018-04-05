@@ -1,8 +1,5 @@
-
 import React, { Component } from 'react';
-import {Router, route, indexRoute, hashHistory} from "react-router"
-import '../../App.css';
-
+import { Button, View, Text } from 'react-native';
 
 
 
@@ -11,15 +8,23 @@ export default class ProfilePage extends React.Component {
         super(props);
 
     }
+    static navigationOptions = {
+        title: 'ProfilePage',
+        headerLeft: null,
+    };
 
     render() {
+        return (
 
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 
-        return <div className="App">
-                 Profile page
-            </div>
-
-
+                <Text>ProfilePage</Text>
+                <Button
+                    title="Navigate Home"
+                    onPress={() => this.props.navigation.navigate('Home')}
+                />
+            </View>
+        );
     }
 }
 
