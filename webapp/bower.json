@@ -1,0 +1,8 @@
+{
+  "name": "rowan-parking",
+  "version": "0.7.0",
+  "description": "parking app for rowan",
+  "dependencies": {
+    "firebaseui": "^2.7.0"
+  }
+}
