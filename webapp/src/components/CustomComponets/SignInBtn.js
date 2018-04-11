@@ -26,7 +26,7 @@ export default class SignInBtn extends React.Component {
 
         return (
             <div >
-                <div onClick={()=>this.signIn()} class="card" style={{"width": this.props.width,"height": this.props.height, "backgroundColor": this.props.color }}>
+                <div className={"card " + this.props.className}  onClick={()=>this.signIn()}  style={{"width": this.props.width,"height": this.props.height, "backgroundColor": this.props.color }}>
                             <h4 style={{"color":this.props.textColor,"fontSize":this.props.fontSize}}>
                                     {this.props.text}
                             </h4>
