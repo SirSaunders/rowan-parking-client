@@ -20,7 +20,8 @@
     "react-snapshot": "^1.0.4",
     "react-svg-morph": "^0.1.10",
     "react-video-cover": "^1.1.0",
-    "firebaseui": "^2.7.0"
+    "firebaseui": "^2.7.0",
+    "firebase": "latest"
   },
   "devDependencies": {
     "husky": "^0.14.3",
@@ -38,8 +39,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "install": "npm install -g bower",
-    "postinstall": "node_modules/.bin/bower install"
+    "eject": "react-scripts eject"
   }
 }
