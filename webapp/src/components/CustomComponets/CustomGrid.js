@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Router, route, indexRoute, hashHistory} from "react-router"
 import '../../App.css';
 import ParkingLotCard from '../CustomComponets/ParkingLotCard'
-import Grid from 'material-ui/Grid';
+import Grid from 'material-ui-next/Grid';
 
 export default class CustomGrid extends React.Component
 {
