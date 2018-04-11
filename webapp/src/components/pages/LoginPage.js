@@ -16,6 +16,7 @@ export default class LoginPage extends React.Component {
 
 
         return <div className="App">
+            <div id="firebaseui-auth-container"></div>
 
                 Login page
             </div>
