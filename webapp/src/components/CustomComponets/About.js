@@ -12,8 +12,10 @@ const styles = {
     container: css({
         alignSelf: 'flex-end',
         background: Values.colors.white,
+
         width: '100%',
         height: '100%',
+
         display: 'flex',
         '@media(max-width: 1224px)': {
             alignSelf: 'auto',

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './css/App.css';
 import Layout from './components/Layout'
 import HomePage from './components/pages/HomePage';
 import LoginPage from './components/pages/LoginPage';

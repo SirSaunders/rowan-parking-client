@@ -1,9 +1,12 @@
 
 import React, { Component } from 'react';
+
+import Dialogbox from '../../components/CustomComponets/Dialogbox.js';
 import {Router, route, indexRoute, hashHistory} from "react-router"
+
 import DatePicker from 'material-ui/DatePicker';
 import TimePicker from 'material-ui/TimePicker';
-import '../../App.css';
+import '../../css/App.css';
 
 import ParkingLotCard from '../CustomComponets/ParkingLotCard'
 import CustomGrid from "../CustomComponets/CustomGrid";
@@ -26,7 +29,8 @@ export default class ParkingLotsPage extends React.Component {
         return <div className="App">
             <FromToBar/>
             <CustomGrid nitems = {3} gtotal = {3} />
-        </div>
+            <Dialogbox/>
+            </div>
 
     }
 }
