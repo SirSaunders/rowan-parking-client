@@ -10,9 +10,8 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "^1.1.1",
     "redux": "^3.7.2",
-    "material-ui": "^0.20.0"
-    "material-ui-next": "^1.0.0-beta.34"
-
+    "material-ui": "^0.20.0",
+    "material-ui-next": "^1.0.0-beta.34",
     "enzyme": "^2.9.1",
     "gh-pages": "^1.0.0",
     "glamor": "^2.20.30",
@@ -36,7 +35,6 @@
       "prettier --write --single-quote true --trailing-comma all --print-width 80",
       "git add"
     ]
-
   },
   "scripts": {
     "start": "react-scripts start",
