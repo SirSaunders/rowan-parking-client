@@ -4,8 +4,8 @@ import VideoBackgroundLoop from '../../utils/uni.mp4';
 import MediaQuery from 'react-responsive';
 
 const style = {
-    width: '100vw',
-    height: '100vh',
+    width: '100%',
+    height: '100%',
     position: 'fixed',
     background: 'black',
     top: 0,
@@ -15,8 +15,8 @@ const style = {
 
 const styleMobile = {
     color: 'white',
-    width: '100vw',
-    height: '100vh',
+    width: '100%',
+    height: '100%',
     position: 'fixed',
     top: 0,
     left: 0,

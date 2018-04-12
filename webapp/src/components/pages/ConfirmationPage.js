@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import {Router, route, indexRoute, hashHistory} from "react-router"
-import '../../App.css';
+import '../../css/App.css';
 
 
 
