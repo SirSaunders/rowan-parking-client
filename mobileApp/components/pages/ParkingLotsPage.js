@@ -1,29 +1,39 @@
 
 import React, { Component } from 'react';
 import { Button, View, Text } from 'react-native';
-
-import { AppRegistry, FlatList, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import axios from 'axios'
+import { AppRegistry, FlatList, StyleSheet, TouchableOpacity, Image,ToastAndroid} from 'react-native';
 
 export default class ParkingLotsPage extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {lots:[
 
+        ]}
     }
     static navigationOptions = {
         title: 'Parking Lots Page',
     };
-
+    componentWillMount(){
+        this.getData()
+    }
     getData(){
-        return [
-            {key: 'Devin'},
-            {key: 'Jackson'},
-            {key: 'James'},
-            {key: 'Joel'},
-            {key: 'John'},
-            {key: 'Jillian'},
-            {key: 'Jimmy'},
-            {key: 'Julie'},
-        ]
+        axios({
+            baseURL: 'http://ec2-34-229-81-168.compute-1.amazonaws.com/deva/api.php?starttime=1520924400&endtime=1520946000&type=1',
+            timeout: 60000,
+            headers: {'Content-Type': 'application/json'},
+            method: 'GET'
+        }).then(function (response) {
+                console.log(response)
+                this.setState({lots:response.data})
+
+            }.bind(this))
+            .catch(function (error) {
+                console.log(error);
+            }.bind(this));
+
+
+        return
     }
 
     render() {
@@ -31,21 +41,23 @@ export default class ParkingLotsPage extends React.Component {
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <View style={styles.container}>
                     <FlatList
-                        data={this.getData()}
+                        data={this.state.lots}
                         renderItem={
                             ({item}) =>
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate('ConfirmationPage')}>
+                                <TouchableOpacity key={item.LotID} onPress={() => this.selectedLot(item.LotID)}>
                                     <View style={styles.itemContainer}>
                                         <Image
                                             style={{width: "100%", height: 200}}
-                                            source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}}
+                                            source={{uri: 'http://images.panda.org/assets/images/pages/welcome/orangutan_1600x1000_279157.jpg'}}
                                         />
-                                        <Text style={styles.item}>{item.key}</Text>
-
+                                        <View style={styles.itemLabel}>
+                                            <Text style={styles.lotName}>{item.LotName}</Text>
+                                            <Text style={styles.lotSpaces}>{item.total}</Text>
+                                        </View>
                                     </View>
                                     <View
                                         style={{
-                                            borderBottomColor: 'black',
+                                            borderBottomColor: 'lightgray',
                                             borderBottomWidth: 1,
                                         }}
                                     />
@@ -58,6 +70,12 @@ export default class ParkingLotsPage extends React.Component {
         );
     }
 
+    selectedLot(id) {
+        ToastAndroid.show(id, ToastAndroid.SHORT);
+        this.props.navigation.navigate('ConfirmationPage')
+
+    }
+
 }
 
 
@@ -66,14 +84,38 @@ const styles = StyleSheet.create({
         flex: 1,
         width:"100%",
     },
-    itemContainer:{paddingLeft: 10,
-        paddingRight:10,
+    itemContainer:{
+        paddingLeft: 10,
+        paddingRight: 10,
+
         paddingTop: 10
     },
-    item: {
-        textAlign: 'center',
-        fontSize: 18,
-        height: 44,
+    itemLabel:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
 
+        height: 44,
+    },
+    lotName: {
+
+        width:'48%',
+        textAlign: 'left',
+        paddingLeft: 10,
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
+    lotSpaces: {
+        width:'48%',
+        textAlign: 'right',
+        paddingRight:10,
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        fontSize: 20,
+        fontWeight: 'bold',
     },
 })
