@@ -20,8 +20,8 @@ export default class Layout extends React.Component {
                     <Navigation />
                     <div>
                        <Routes/>
-                    </div>
-                    <Footer />
+                    </div >
+                    {/*<Footer />*/}
                 </div>
             </MuiThemeProvider>
         )
