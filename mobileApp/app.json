@@ -1,5 +1,14 @@
 {
   "expo": {
-    "sdkVersion": "25.0.0"
+    "sdkVersion": "25.0.0",
+    "name": "Rowan Parking",
+    "version": "1.0.0",
+    "slug": "rowan-parking",
+    "ios": {
+      "bundleIdentifier": "edu.rowan.parking"
+    },
+    "android": {
+      "package": "edu.rowan.parking"
+    }
   }
 }
