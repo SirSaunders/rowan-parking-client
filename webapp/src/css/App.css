@@ -1,17 +1,19 @@
 .App {
   text-align: center;
   max-width: 100%;
+  max-height: 150%;
   overflow: hidden;
-  max-height: 100%;
+
 }
 .About{
   padding: 3%;
 }
 
-.transbox {
-margin-top:30%;
-}
 
+.framed {
+  border: 1px solid white;
+  background-color: rgba(255, 255, 255, 0.6);
+}
 
 .App-logo {
   height: 150px;
@@ -53,8 +55,8 @@ margin-top:30%;
 }
 
 .container{
-  width: 100%;
-height: 150%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .App-intro {

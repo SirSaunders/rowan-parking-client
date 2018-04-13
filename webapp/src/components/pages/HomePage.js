@@ -55,22 +55,25 @@ export default class HomePage extends React.Component {
     render() {
 
 
-        return <div className="App">
+        return <div style={{ padding: 33 }} className="App">
+            <Video/>
             <Grid  container spacing={24} alignContent="center">
-                <Grid alignContent="center" item xs>
+                <Grid className="oval" alignContent="center" item xs>
                   <Image/>
+
                 </Grid>
+
             </Grid>
 
             <Grid  container spacing={24}>
                 <Grid item xs>
-                    <Video/>
+
                     <SignInBtn/>
                 </Grid>
             </Grid>
             <Grid container spacing={24}>
                 <Grid item xs justify='center' alignItems='center'>
-                    <Paper className="container" elevation={-1}> < About /></Paper>
+                    <Paper className="container" elevation={8}> < About /></Paper>
                 </Grid>
 
             </Grid>

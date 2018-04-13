@@ -8,8 +8,8 @@ class About extends PureComponent {
         return (
 
             <div className="About">
-                <Typography variant="display4" align="center" gutterBottom>
-                   About
+                <Typography variant="display3"  align="center" gutterBottom>
+                   ABOUT
                 </Typography>
                 <Typography variant="headline" gutterBottom align="inherit">
                     {Values.about.text}
