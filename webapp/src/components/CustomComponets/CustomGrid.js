@@ -3,9 +3,12 @@ import {Router, route, indexRoute, hashHistory} from "react-router"
 import '../../css/App.css';
 import ParkingLotCard from '../CustomComponets/ParkingLotCard'
 import Grid from 'material-ui-next/Grid';
+import * as firebase from "firebase/index";
 
 export default class CustomGrid extends React.Component
 {
+
+
     constructor(props) {
         super(props);
     }
