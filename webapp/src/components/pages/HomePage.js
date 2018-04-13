@@ -4,9 +4,9 @@ import logo from '../../utils/logo.svg';
 import {Router, route, indexRoute, hashHistory} from "react-router"
 import '../../css/App.css';
 import Video from '../CustomComponets/Video'
-import About from '../CustomComponets/About'
-import Image from '../CustomComponets/Image'
-import SignInBtn from '../CustomComponets/SignInBtn'
+import About from '../CustomComponets/HomePage/About'
+import Image from '../CustomComponets/HomePage/Image'
+import SignInBtn from '../CustomComponets/HomePage/SignInBtn'
 import * as firebase from 'firebase';
 import Paper from 'material-ui-next/Paper';
 import Grid from 'material-ui-next/Grid';
@@ -56,40 +56,21 @@ export default class HomePage extends React.Component {
 
 
         return <div className="App">
-            <Grid container spacing={0} alignContent="center">
-                <Grid className="App-logo" item xs>
-                    <Image/>
+            <Grid  container spacing={24} alignContent="center">
+                <Grid alignContent="center" item xs>
+                  <Image/>
                 </Grid>
             </Grid>
 
-            <Grid container spacing={24}>
+            <Grid  container spacing={24}>
                 <Grid item xs>
                     <Video/>
-                    <div style={{"height":"80vh"}}>
-                        <div style = {Object.assign({ "marginTop":"10vh","float":"left"},this.getDivStyle())}>
-                            <header >
-
-                            </header>
-                        </div>
-                        <div  style = {Object.assign({ "width":"49%", "marginTop":"15vh","float":"left"},this.getDivStyle())}>
-                            <h1 className="App-title App-Login" >Welcome to Rowan Parking Website</h1>
-                            <SignInBtn
-                                className = "centerH"
-                                text={"Login and Reserve Today!"}
-                                color={"Red"}
-                                textColor={"White"}
-                                width={250}
-                                height ={50}
-                                fontSize={15}
-                            />
-
-                        </div>
-                    </div>
+                    <SignInBtn/>
                 </Grid>
             </Grid>
-            <Grid container spacing={0}>
+            <Grid container spacing={24}>
                 <Grid item xs justify='center' alignItems='center'>
-                    <Paper elevation={4}> <About /></Paper>
+                    <Paper className="container" elevation={-1}> < About /></Paper>
                 </Grid>
 
             </Grid>

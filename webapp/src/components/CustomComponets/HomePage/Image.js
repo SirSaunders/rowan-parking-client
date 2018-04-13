@@ -1,7 +1,7 @@
 
 import React, { PureComponent } from 'react';
 import { css } from 'glamor';
-import logo from '../../utils/logo.svg';
+import logo from '../../../utils/logo.svg';
 
 
 
@@ -11,9 +11,9 @@ const styles = {
     imgContainer: css({
         width: '100%',
         '@media(min-width: 1224px)': {
-            width: '50%',
+            width: '100%',
             display: 'flex ',
-            float: 'left',
+            float: 'center',
             padding: '1em',
             margin: '0em 0 0em 0',
         },
