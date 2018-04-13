@@ -29,7 +29,7 @@ export default class ParkingLotsPage extends React.Component {
         return <div className="App">
             <FromToBar/>
             <CustomGrid nitems = {3} gtotal = {3} />
-            <Dialogbox/>
+            <div>  <Dialogbox/> </div>
             </div>
 
     }
