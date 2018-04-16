@@ -5,9 +5,13 @@
   overflow: hidden;
 
 }
-.About{
+.About {
   padding: 3%;
+  text-align: justify;
+  text-wrap: normal;
 }
+
+
 
 
 .framed {
