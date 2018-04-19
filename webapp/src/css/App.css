@@ -1,5 +1,22 @@
 .App {
   text-align: center;
+  max-width: 100%;
+  max-height: 150%;
+  overflow: hidden;
+
+}
+.About {
+  padding: 3%;
+  text-align: justify;
+  text-wrap: normal;
+}
+
+
+
+
+.framed {
+  border: 1px solid white;
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 .App-logo {
@@ -41,6 +58,11 @@
   margin-right: auto;
 }
 
+.container{
+  max-width: 100%;
+  overflow: hidden;
+}
+
 .App-intro {
   font-size: large;
 }
@@ -73,4 +95,9 @@
 /* Add some padding inside the card container */
 .container {
   padding: 2px 16px;
+}
+
+.grid{
+  padding: 2px 16px;
+  top:10%;
 }

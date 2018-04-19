@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import {Router, route, indexRoute, hashHistory} from "react-router"
 import '../../css/App.css';
 import * as firebase from 'firebase';
-import SignInBtn from '../CustomComponets/SignInBtn'
+import SignInBtn from '../CustomComponets/HomePage/SignInBtn'
 
 
 
