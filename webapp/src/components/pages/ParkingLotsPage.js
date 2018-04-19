@@ -21,6 +21,7 @@ import FromToBar from '../CustomComponets/FromToBar'
 export default class ParkingLotsPage extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {openDialog: false}
     }
 
     //this is a comment
@@ -28,8 +29,14 @@ export default class ParkingLotsPage extends React.Component {
 
         return <div className="App">
             <FromToBar/>
-            <CustomGrid nitems = {3} gtotal = {3} />
-            <div>  <Dialogbox/> </div>
+            <CustomGrid onCardClick={()=> this.setState({openDialog:true})} nitems = {3} gtotal = {3} />
+            {(this.state.openDialog)?
+            <div>
+                <Dialogbox
+                    onSubmit = {()=>this.setState({openDialog:false})}
+                    onCancel = {()=>this.setState({openDialog:false})}
+                />
+            </div>: ''}
             </div>
 
     }

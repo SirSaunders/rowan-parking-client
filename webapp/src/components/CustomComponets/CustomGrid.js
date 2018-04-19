@@ -21,7 +21,7 @@ export default class CustomGrid extends React.Component
         {
             gridItems.push(
             <Grid item sm>
-        <ParkingLotCard/>
+        <ParkingLotCard onClick={this.props.onCardClick}/>
         </Grid>
         )
         }
