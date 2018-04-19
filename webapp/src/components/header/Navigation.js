@@ -21,7 +21,6 @@ export default class Navigation extends React.Component {
             console.log(user)
             if(user != null){
                 this.setState({menuItems: [
-                    {title:'Home Page', path:'/'},
                     {title:'Profile', path:'/profile'},
                     {title:'Parking Lots', path:'/parking-lots'},
                     {title:'logout', path:'/logout'}

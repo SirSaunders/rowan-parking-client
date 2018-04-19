@@ -48,7 +48,7 @@ export default class DialogExampleSimple extends React.Component {
                     open={this.state.open}
                     onRequestClose={this.handleClose}
                 >
-                  Ready to confirm your reservation?
+                  Ready to confirm your reservation for {this.props.lotSelected}?
                 </Dialog>
             </div>
         );
