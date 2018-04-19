@@ -26,6 +26,7 @@ function signIn(){
     firebase.auth().signInWithRedirect(provider);
 
 
+
 }
 
 

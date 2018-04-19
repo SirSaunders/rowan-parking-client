@@ -30,7 +30,9 @@ export default class HomePage extends React.Component {
         firebase.auth().onAuthStateChanged(function (user){
             console.log(user)
             //add sign out button before uncommenting
-            //window.location.assign('/parking-lots')
+            if(user != null) {
+                window.location.assign('/parking-lots')
+            }
         });
 
     }

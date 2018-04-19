@@ -18,7 +18,7 @@ export default class NavBarBtns extends React.Component {
                 {( this.props.menuItems != null &&  this.props.menuItems.length > 0)?
                     this.props.menuItems.map((item, index) => (
                     <FlatButton  onClick={() => window.location.assign(item.path)} label={item.title} style={{color:"white"}} secondary={true} />
-                    )) : 'null'
+                    )) : ''
                 }
             </div>
         )
