@@ -101,12 +101,8 @@ export default class ParkingLotsPage extends React.Component {
     }
 
     confirmedReservation(selectedLot) {
-        var start = new Date()
-        var end = new Date()
-        start.setTime(this.state.start)
-        end.setTime(this.state.end)
         window.location.assign('/confirmation?lot='+selectedLot+
-            '&start='+start+
+            '&start='+this.state.start+
             '&end='+this.state.end)
 
     }
