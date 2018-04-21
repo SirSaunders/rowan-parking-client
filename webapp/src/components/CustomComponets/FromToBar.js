@@ -5,9 +5,7 @@ import TimePicker from "material-ui/TimePicker/index";
 export default class ParkingLotCard extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {width: window.innerWidth,date:null,startTime:null,endTime:null };
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.state={date:null,startTime:null,endTime:null}
+        this.state = {width: window.innerWidth,date:this.start(),startTime:this.start(),endTime:this.end() };
         this.callbackDate = this.callbackDate.bind(this)
         this.end = this.end.bind(this)
         this.start = this.start.bind(this)
@@ -22,11 +20,7 @@ export default class ParkingLotCard extends React.Component {
         this.setState({ width: window.innerWidth });
     }
 
-    handleSubmit(event) {
-        console.log(event);
-        alert('submitted');
-        event.preventDefault();
-    }
+
     start() {
         var start= new Date()
         start.setTime(this.props.startTimeDefualt)
@@ -41,7 +35,6 @@ export default class ParkingLotCard extends React.Component {
     render () {
 
         return (
-            <form onSubmit={this.handleSubmit}>
 
 
                 <div>
@@ -66,11 +59,8 @@ export default class ParkingLotCard extends React.Component {
                                 }}
                                 defaultTime={this.end()}
                     />
-                    <input type="submit" value="Search" style={{display : 'inline-block'}}/>
                 </div>
 
-
-            </form>
         )
     }
 

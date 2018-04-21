@@ -31,6 +31,7 @@ export default class ParkingLotsPage extends React.Component {
             end.setHours(23)
         }
         this.state = {openDialog: false,selectedLot:null,lots:[],start:start.getTime(),end:end.getTime()}
+        this.timeChange=this.timeChange.bind(this)
     }
     componentDidMount(){
         this.getData(this.state.start,this.state.end)
@@ -47,10 +48,14 @@ export default class ParkingLotsPage extends React.Component {
             this.setState({lots:response.data})
         }.bind(this))
 
-        this.setState({lots:[{name:'lotA',total:50}]})
 
 
 
+    }
+    timeChange(start, end){
+        this.setState({start:start.getTime()})
+        this.setState({end:end.getTime()})
+        this.getData(start.getTime(),end.getTime())
     }
     //this is a comment
     render() {
@@ -68,9 +73,8 @@ export default class ParkingLotsPage extends React.Component {
                     start.setDate(date.getDate())
                     end.setMonth(date.getMonth())
                     end.setDate(date.getDate())
-                    this.setState({start:start,end:end})
-                        alert( start.getTime() +' , ' + end.getTime())
-                    }
+                    this.timeChange(start,end)
+                }
                 }
                 startTimeDefualt={this.state.start}
                 endTimeDefualt={this.state.end}
@@ -97,7 +101,13 @@ export default class ParkingLotsPage extends React.Component {
     }
 
     confirmedReservation(selectedLot) {
-        window.location.assign('/confirmation')
+        var start = new Date()
+        var end = new Date()
+        start.setTime(this.state.start)
+        end.setTime(this.state.end)
+        window.location.assign('/confirmation?lot='+selectedLot+
+            '&start='+start+
+            '&end='+this.state.end)
 
     }
 }
