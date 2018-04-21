@@ -10,8 +10,9 @@ import RaisedButton from 'material-ui/RaisedButton';
  * You can also close this dialog by clicking outside the dialog, or with the 'Esc' key.
  */
 export default class DialogExampleSimple extends React.Component {
+
     state = {
-        open: false,
+        open: true,
     };
 
     handleOpen = () => {
@@ -20,6 +21,7 @@ export default class DialogExampleSimple extends React.Component {
 
     handleClose = () => {
         this.setState({open: false});
+
     };
 
     render() {
@@ -27,27 +29,26 @@ export default class DialogExampleSimple extends React.Component {
             <FlatButton
                 label="Cancel"
                 primary={true}
-                onClick={this.handleClose}
+                onClick={this.props.onCancel}
             />,
             <FlatButton
                 label="Submit"
                 primary={true}
                 keyboardFocused={true}
-                onClick={this.handleClose}
+                onClick={this.props.onSubmit}
             />,
         ];
 
         return (
             <div>
-                <RaisedButton label="Confirm" onClick={this.handleOpen} />
                 <Dialog
                     title="Confirmation"
                     actions={actions}
                     modal={false}
                     open={this.state.open}
-                    onRequestClose={this.handleClose}
+                    onRequestClose={this.props.onCancel}
                 >
-                  Ready to confirm your reservation?
+                  Ready to confirm your reservation for {this.props.lotSelected}?
                 </Dialog>
             </div>
         );

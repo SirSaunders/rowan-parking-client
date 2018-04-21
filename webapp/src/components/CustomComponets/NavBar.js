@@ -45,7 +45,7 @@ export default class NavBar extends React.Component {
                             {( this.props.menuItems != null &&  this.props.menuItems.length > 0)?
                                 this.props.menuItems.map((item, index) => (
                                     <MenuItem onClick={() => window.location.assign(item.path)}>{item.title}</MenuItem>
-                                )) : 'null'
+                                )) : ''
                             }
 
                         </Drawer>

@@ -18,12 +18,12 @@ export default class ParkingLotCard extends React.Component {
 
         return (
             <div className="Card">
-                <Card onClick={ ()=>alert('Congratulations on attempting to make a reservation! Unfortunately this card does not allow reservations at this time. Please check back later!')}>
-                        <CardMedia overlay={<CardTitle title={'93 Spots'} subtitle={''} />}>
+                <Card onClick={ ()=>this.props.onClick(this.props.lotName,this.props.lotID)}>
+                        <CardMedia overlay={<CardTitle title={this.props.lotSpaces} subtitle={''} />}>
                             <img className="Crop-Fit" height='306px' width='479' src={'https://www.rowan.edu/home/sites/default/files/Commencement%20on%20Main%20Campus/comparking.png'} alt="" />
                         </CardMedia>
                         <CardText>
-                            {'Lot X'}
+                            {this.props.lotName}
                         </CardText>
                         <CardActions>
 

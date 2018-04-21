@@ -5,8 +5,11 @@ import TimePicker from "material-ui/TimePicker/index";
 export default class ParkingLotCard extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {width: window.innerWidth };
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.state = {width: window.innerWidth,date:this.start(),startTime:this.start(),endTime:this.end() };
+        this.callbackDate = this.callbackDate.bind(this)
+        this.end = this.end.bind(this)
+        this.start = this.start.bind(this)
+
     }
 
     componentDidMount() {
@@ -17,33 +20,58 @@ export default class ParkingLotCard extends React.Component {
         this.setState({ width: window.innerWidth });
     }
 
-    handleSubmit(event) {
-        alert('submitted');
-        event.preventDefault();
+
+    start() {
+        var start= new Date()
+        start.setTime(this.props.startTimeDefualt)
+        return start
     }
 
+    end() {
+        var end= new Date()
+        end.setTime(this.props.endTimeDefualt)
+        return end
+    }
     render () {
 
         return (
-            <form onSubmit={this.handleSubmit}>
 
-                {(this.state.width < 650)?
-                <div>
-                <DatePicker hintText="Date" autoOk="true" floatingLabelText="Date"/>
-                    <TimePicker hintText="Start Time" floatingLabelText="Start Time"/>
-                    <TimePicker hintText="End Time" floatingLabelText="End time"/>
-                    <input type="submit" value="Search" />
-                </div>
-                :
-                <div>
-                    <DatePicker hintText="Date" autoOk="true" style={{display : 'inline-block'}} floatingLabelText="Date" />
-                    <TimePicker hintText="Start Time" style={{display : 'inline-block'}} floatingLabelText="Start Time" />
-                    <TimePicker hintText="End Time" style={{display : 'inline-block'}} floatingLabelText="End Time" />
-                    <input type="submit" value="Search" style={{display : 'inline-block'}}/>
-                </div>
-                }
 
-            </form>
+                <div>
+                    <DatePicker hintText="Date" autoOk="true" style={{display : 'inline-block'}} floatingLabelText="Date"
+                                onChange={( undefined,  object)=> {
+                                    this.callbackDate({date:object})
+                                }}
+                                defaultDate={this.start()}
+                    />
+                    <TimePicker hintText="Start Time" style={{display : 'inline-block'}} floatingLabelText="Start Time"
+                                onChange={( undefined,  object)=> {
+                                    this.callbackDate({startTime:object})
+
+                                }}
+                                defaultTime={this.start()}
+
+                    />
+                    <TimePicker hintText="End Time" style={{display : 'inline-block'}} floatingLabelText="End Time"
+                                onChange={( undefined,  object)=> {
+                                    this.callbackDate({endTime:object})
+
+                                }}
+                                defaultTime={this.end()}
+                    />
+                </div>
+
         )
+    }
+
+    callbackDate(changeTime) {
+        this.setState(changeTime)
+        window.setTimeout(
+            function() {
+                console.log(this.state.date + this.state.startTime + this.state.endTime)
+                if (this.state.date != null && this.state.startTime != null && this.state.endTime != null) {
+                    this.props.timeChange(this.state.date, this.state.startTime, this.state.endTime)
+                }
+            }.bind(this),250) //hacky fix fro setting state delay
     }
 }
