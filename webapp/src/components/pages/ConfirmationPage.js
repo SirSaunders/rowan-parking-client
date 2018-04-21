@@ -11,6 +11,14 @@ export default class ConfirmationPage extends React.Component {
         super(props);
 
     }
+    componentWillMount(){
+        //this will get the url params from the url to put in confirmation description
+        var url = new URL( window.location.href);
+        var stateTime = url.searchParams.get('stateTime');
+        var endTime = url.searchParams.get('endTime');
+        var lotName = url.searchParams.get('lotName');
+
+    }
 
     render() {
 

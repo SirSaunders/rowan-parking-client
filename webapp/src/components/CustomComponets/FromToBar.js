@@ -7,6 +7,8 @@ export default class ParkingLotCard extends React.Component {
         super(props);
         this.state = {width: window.innerWidth };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.state={date:null,startTime:null,endTime:null}
+        this.callbackDate = this.callbackDate.bind(this)
     }
 
     componentDidMount() {
@@ -18,6 +20,7 @@ export default class ParkingLotCard extends React.Component {
     }
 
     handleSubmit(event) {
+        console.log(event);
         alert('submitted');
         event.preventDefault();
     }
@@ -36,14 +39,33 @@ export default class ParkingLotCard extends React.Component {
                 </div>
                 :
                 <div>
-                    <DatePicker hintText="Date" autoOk="true" style={{display : 'inline-block'}} floatingLabelText="Date" />
-                    <TimePicker hintText="Start Time" style={{display : 'inline-block'}} floatingLabelText="Start Time" />
-                    <TimePicker hintText="End Time" style={{display : 'inline-block'}} floatingLabelText="End Time" />
+                    <DatePicker hintText="Date" autoOk="true" style={{display : 'inline-block'}} floatingLabelText="Date"
+                                onChange={( undefined,  object)=> {
+                                    this.setState({date:object})
+                                    this.callbackDate()
+                                }}
+                    />
+                    <TimePicker hintText="Start Time" style={{display : 'inline-block'}} floatingLabelText="Start Time"
+                                onChange={( undefined,  object)=> {
+                                    this.setState({startTime:object})
+                                    this.callbackDate()
+
+                                }} />
+                    <TimePicker hintText="End Time" style={{display : 'inline-block'}} floatingLabelText="End Time"
+                                onChange={( undefined,  object)=> {
+                                    this.setState({endTime:object})
+                                    this.callbackDate()
+
+                                }}/>
                     <input type="submit" value="Search" style={{display : 'inline-block'}}/>
                 </div>
                 }
 
             </form>
         )
+    }
+
+    callbackDate() {
+        this.prop.timeChane(this.state.date, this.state.startTime, this.state.endTime)
     }
 }
