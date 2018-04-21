@@ -18,7 +18,7 @@ export default class ParkingLotCard extends React.Component {
 
         return (
             <div className="Card">
-                <Card onClick={ ()=>this.props.onClick(this.props.lotName)}>
+                <Card onClick={ ()=>this.props.onClick(this.props.lotName,this.props.lotID)}>
                         <CardMedia overlay={<CardTitle title={this.props.lotSpaces} subtitle={''} />}>
                             <img className="Crop-Fit" height='306px' width='479' src={'https://www.rowan.edu/home/sites/default/files/Commencement%20on%20Main%20Campus/comparking.png'} alt="" />
                         </CardMedia>
