@@ -9,6 +9,9 @@ export default class ParkingLotCard extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state={date:null,startTime:null,endTime:null}
         this.callbackDate = this.callbackDate.bind(this)
+        this.end = this.end.bind(this)
+        this.start = this.start.bind(this)
+
     }
 
     componentDidMount() {
@@ -24,39 +27,48 @@ export default class ParkingLotCard extends React.Component {
         alert('submitted');
         event.preventDefault();
     }
+    start() {
+        var start= new Date()
+        start.setTime(this.props.startTimeDefualt)
+        return start
+    }
 
+    end() {
+        var end= new Date()
+        end.setTime(this.props.endTimeDefualt)
+        return end
+    }
     render () {
 
         return (
             <form onSubmit={this.handleSubmit}>
 
-                {(this.state.width < 650)?
-                <div>
-                <DatePicker hintText="Date" autoOk="true" floatingLabelText="Date"/>
-                    <TimePicker hintText="Start Time" floatingLabelText="Start Time"/>
-                    <TimePicker hintText="End Time" floatingLabelText="End time"/>
-                    <input type="submit" value="Search" />
-                </div>
-                :
+
                 <div>
                     <DatePicker hintText="Date" autoOk="true" style={{display : 'inline-block'}} floatingLabelText="Date"
                                 onChange={( undefined,  object)=> {
                                     this.callbackDate({date:object})
                                 }}
+                                defaultDate={this.start()}
                     />
                     <TimePicker hintText="Start Time" style={{display : 'inline-block'}} floatingLabelText="Start Time"
                                 onChange={( undefined,  object)=> {
                                     this.callbackDate({startTime:object})
 
-                                }} />
+                                }}
+                                defaultTime={this.start()}
+
+                    />
                     <TimePicker hintText="End Time" style={{display : 'inline-block'}} floatingLabelText="End Time"
                                 onChange={( undefined,  object)=> {
                                     this.callbackDate({endTime:object})
 
-                                }}/>
+                                }}
+                                defaultTime={this.end()}
+                    />
                     <input type="submit" value="Search" style={{display : 'inline-block'}}/>
                 </div>
-                }
+
 
             </form>
         )

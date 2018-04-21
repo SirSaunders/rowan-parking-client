@@ -72,6 +72,9 @@ export default class ParkingLotsPage extends React.Component {
                         alert( start.getTime() +' , ' + end.getTime())
                     }
                 }
+                startTimeDefualt={this.state.start}
+                endTimeDefualt={this.state.end}
+
             />
             <div >
                 {listLots}
