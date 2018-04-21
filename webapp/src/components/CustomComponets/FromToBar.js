@@ -5,7 +5,7 @@ import TimePicker from "material-ui/TimePicker/index";
 export default class ParkingLotCard extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {width: window.innerWidth };
+        this.state = {width: window.innerWidth,date:null,startTime:null,endTime:null };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state={date:null,startTime:null,endTime:null}
         this.callbackDate = this.callbackDate.bind(this)
@@ -41,20 +41,17 @@ export default class ParkingLotCard extends React.Component {
                 <div>
                     <DatePicker hintText="Date" autoOk="true" style={{display : 'inline-block'}} floatingLabelText="Date"
                                 onChange={( undefined,  object)=> {
-                                    this.setState({date:object})
-                                    this.callbackDate()
+                                    this.callbackDate({date:object})
                                 }}
                     />
                     <TimePicker hintText="Start Time" style={{display : 'inline-block'}} floatingLabelText="Start Time"
                                 onChange={( undefined,  object)=> {
-                                    this.setState({startTime:object})
-                                    this.callbackDate()
+                                    this.callbackDate({startTime:object})
 
                                 }} />
                     <TimePicker hintText="End Time" style={{display : 'inline-block'}} floatingLabelText="End Time"
                                 onChange={( undefined,  object)=> {
-                                    this.setState({endTime:object})
-                                    this.callbackDate()
+                                    this.callbackDate({endTime:object})
 
                                 }}/>
                     <input type="submit" value="Search" style={{display : 'inline-block'}}/>
@@ -65,7 +62,14 @@ export default class ParkingLotCard extends React.Component {
         )
     }
 
-    callbackDate() {
-        this.prop.timeChane(this.state.date, this.state.startTime, this.state.endTime)
+    callbackDate(changeTime) {
+        this.setState(changeTime)
+        window.setTimeout(
+            function() {
+                console.log(this.state.date + this.state.startTime + this.state.endTime)
+                if (this.state.date != null && this.state.startTime != null && this.state.endTime != null) {
+                    this.props.timeChange(this.state.date, this.state.startTime, this.state.endTime)
+                }
+            }.bind(this),250) //hacky fix fro setting state delay
     }
 }
