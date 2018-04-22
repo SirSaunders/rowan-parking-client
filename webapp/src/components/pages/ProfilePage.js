@@ -10,6 +10,11 @@ import * as firebase from 'firebase';
 
 import avatar from "../../utils/image.jpg";
 
+
+function profile_info(){
+}
+
+/**
 profile_info()
 {
     GoogleSignInAccount
@@ -30,7 +35,7 @@ profile_info()
     }
 
 }
-
+**/
 export default class ProfilePage extends React.Component {
     constructor(props) {
         super(props);
