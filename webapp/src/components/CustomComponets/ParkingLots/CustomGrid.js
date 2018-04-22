@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Router, route, indexRoute, hashHistory} from "react-router"
-import '../../css/App.css';
-import ParkingLotCard from '../CustomComponets/ParkingLotCard'
+import '../../../css/App.css';
+import ParkingLotCard from '../ParkingLotCard'
 import Grid from 'material-ui-next/Grid';
 import * as firebase from "firebase/index";
 
