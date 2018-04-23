@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Cover from 'react-video-cover';
-import VideoBackgroundLoop from '../../utils/uni.mp4';
+import VideoBackgroundLoop from '../../../utils/uni.mp4';
 import MediaQuery from 'react-responsive';
 
 const style = {

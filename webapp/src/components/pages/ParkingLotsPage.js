@@ -2,15 +2,15 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 
-import Dialogbox from '../../components/CustomComponets/Dialogbox.js';
+import Dialogbox from '../CustomComponets/ParkingLots/Dialogbox.js';
 import {Router, route, indexRoute, hashHistory} from "react-router"
 
 import '../../css/App.css';
 
-import ParkingLotCard from '../CustomComponets/ParkingLotCard'
+import ParkingLotCard from '../CustomComponets/ParkingLots/ParkingLotCard'
 
 
-import FromToBar from '../CustomComponets/FromToBar'
+import FromToBar from '../CustomComponets/ParkingLots/FromToBar'
 
 
 export default class ParkingLotsPage extends React.Component {

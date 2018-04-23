@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import logo from '../../utils/logo.svg';
 import {Router, route, indexRoute, hashHistory} from "react-router"
 import '../../css/App.css';
-import Video from '../CustomComponets/Video'
+import Video from '../CustomComponets/HomePage/Video'
 import About from '../CustomComponets/HomePage/About'
 import Image from '../CustomComponets/HomePage/Image'
 import SignInBtn from '../CustomComponets/HomePage/SignInBtn'
