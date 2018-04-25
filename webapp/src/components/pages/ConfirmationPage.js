@@ -19,8 +19,7 @@ export default class ConfirmationPage extends React.Component {
         //this will get the url params from the url to put in confirmation description
         var url = new URL( window.location.href);
         console.log(url)
-
-        //this.setState({start: url.searchParams.get('start'),end:url.searchParams.get('end'),lot:url.searchParams.get('lot')});
+        this.setState({start: url.searchParams.get('start'),end:url.searchParams.get('end'),lot:url.searchParams.get('lot')});
     }
 
     miliToDate(mili){
