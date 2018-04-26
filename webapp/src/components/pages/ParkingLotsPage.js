@@ -46,8 +46,10 @@ export default class ParkingLotsPage extends React.Component {
             method: 'GET'
         }).then(function (response) {
             console.log(response.data)
-            if (Array.isArray(response)){
+            if (Object.prototype.toString.call(response.data) === '[object Array]'){
                 this.setState({lots: response.data})
+            }else{
+                this.setState({lots:[]})
             }
         }.bind(this))
 
