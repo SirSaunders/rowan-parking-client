@@ -46,7 +46,9 @@ export default class ParkingLotsPage extends React.Component {
             method: 'GET'
         }).then(function (response) {
             console.log(response.data)
-            this.setState({lots:response.data})
+            if (Array.isArray(response)){
+                this.setState({lots: response.data})
+            }
         }.bind(this))
 
 
@@ -113,6 +115,7 @@ export default class ParkingLotsPage extends React.Component {
     }
 
     submitReservation(){
+        var lot = this.state.selectedLot
         var start = this.state.start
         var end = this.state.end
          console.log(this.state.selectID)
@@ -134,7 +137,7 @@ export default class ParkingLotsPage extends React.Component {
             method: 'POST'
         }).then(function (response) {
             console.log(response.data)
-            this.confirmedReservation(this.state.selectedLot)
+            this.confirmedReservation(lot)
         }.bind(this))
 
     }
