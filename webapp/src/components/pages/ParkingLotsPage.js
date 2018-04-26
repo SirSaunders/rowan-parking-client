@@ -111,25 +111,31 @@ export default class ParkingLotsPage extends React.Component {
     }
 
     submitReservation(){
-        var  corsProxySite = 'https://cors-anywhere.herokuapp.com/'
+         var  corsProxySite = 'https://cors-anywhere.herokuapp.com/'
         var start = this.state.start
         var end = this.state.end
-        console.log('submit')
-        axios({
-            baseURL: corsProxySite +'http://ec2-34-229-81-168.compute-1.amazonaws.com/deva/newReservation',
-            timeout: 60000,
-            headers: {'Content-Type': 'application/json'},
-            data: {
-                "LotID" : this.state.selectID,
-                "UserID": "3",//replace with token ID
-                "StartTime": start,
-                "EndTime": end
+        // console.log('submit')
+
+        var data = JSON.stringify({
+            "LotID": this.selectID,
+            "UserID": "3",
+            "StartTime": start,
+            "EndTime": end
+        });
+
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === 4) {
+                console.log(this.responseText);
             }
-            ,
-            method: 'POST'
-        }).then(function (response) {
-            console.log(response.data)
-        })
+        });
+
+        xhr.open("POST", "http://ec2-34-229-81-168.compute-1.amazonaws.com/deva/api.php?table=reservation");
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.send(data);
 
     }
 }
