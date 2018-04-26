@@ -166,14 +166,14 @@ export default class ProfilePage extends React.Component {
                                     • student
                                 </Typography>
                             </CardContent>
-                            <CardActions>
-                                <Button size="larger" align ="center" color="primary">
-                                    Report User
-                                </Button>
-                                <Button size="small" color="primary">
-                                   Contact User
-                                </Button>
-                            </CardActions>
+                            {/*<CardActions>*/}
+                                {/*<Button size="larger" align ="center" color="primary">*/}
+                                    {/*Report User*/}
+                                {/*</Button>*/}
+                                {/*<Button size="small" color="primary">*/}
+                                   {/*Contact User*/}
+                                {/*</Button>*/}
+                            {/*</CardActions>*/}
                         </Card>
 
                     </Grid>
