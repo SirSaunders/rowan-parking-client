@@ -46,7 +46,11 @@ export default class ParkingLotsPage extends React.Component {
             method: 'GET'
         }).then(function (response) {
             console.log(response.data)
-            this.setState({lots:response.data})
+            if (Object.prototype.toString.call(response.data) === '[object Array]'){
+                this.setState({lots: response.data})
+            }else{
+                this.setState({lots:[]})
+            }
         }.bind(this))
 
 
@@ -58,15 +62,18 @@ export default class ParkingLotsPage extends React.Component {
         this.setState({end:end.getTime()})
         this.getData(start.getTime(),end.getTime())
     }
-    //this is a comment
+
     render() {
         const listLots = this.state.lots.map((item) =>
         <ParkingLotCard
             key={item.LotID}
-            onClick={(e,id)=>this.setState({selectedLot:e,selectID:id})}
+            onClick={(e,id)=>{
+                this.setState({selectedLot:e,selectID:id})
+                console.log(this.state.selectID)
+            }}
             lotName={item.LotName}
             lotSpaces={item.total}
-            lotID={item.lotID}
+            lotID={item.LotID}
         />);
         return <div className="App">
             <FromToBar
@@ -92,7 +99,6 @@ export default class ParkingLotsPage extends React.Component {
                 <Dialogbox
                     onSubmit = {()=>{
                         this.submitReservation()
-                        this.confirmedReservation(this.state.selectedLot)
                         this.setState({selectedLot:null})
                     }}
                     onCancel = {()=>this.setState({selectedLot:null})}
@@ -111,25 +117,30 @@ export default class ParkingLotsPage extends React.Component {
     }
 
     submitReservation(){
-        var  corsProxySite = 'https://cors-anywhere.herokuapp.com/'
+        var lot = this.state.selectedLot
         var start = this.state.start
         var end = this.state.end
-        console.log('submit')
+         console.log(this.state.selectID)
+
+        var data = JSON.stringify({
+            "LotID": this.state.selectID,
+            "UserID": "3",
+            "StartTime": start,
+            "EndTime": end
+        });
+
+
+        var  corsProxySite = 'https://cors-anywhere.herokuapp.com/'
         axios({
-            baseURL: corsProxySite +'http://ec2-34-229-81-168.compute-1.amazonaws.com/deva/newReservation',
+            baseURL: corsProxySite+"http://ec2-34-229-81-168.compute-1.amazonaws.com/deva/api.php?table=reservation",
             timeout: 60000,
             headers: {'Content-Type': 'application/json'},
-            data: {
-                "LotID" : this.state.selectID,
-                "UserID": "3",//replace with token ID
-                "StartTime": start,
-                "EndTime": end
-            }
-            ,
+            data:data,
             method: 'POST'
         }).then(function (response) {
             console.log(response.data)
-        })
+            this.confirmedReservation(lot)
+        }.bind(this))
 
     }
 }
