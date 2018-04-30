@@ -34,10 +34,10 @@ export default class HomePage extends React.Component {
 
             if(user != null ) {
                 if (user.email.includes('rowan')) {
+                    this.addUser(user);
+                }else {
+                    alert('Please use your Rowan account to sign in')
                 }
-                this.addUser(user);
-            }else {
-                alert('Please use your Rowan account to sign in')
             }
         }.bind(this));
 

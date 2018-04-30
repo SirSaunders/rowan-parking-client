@@ -133,7 +133,6 @@ export default class ParkingLotsPage extends React.Component {
         }).then(function (response) {
             console.log(response.data)
             this.setState({selectedLot:null})
-
             window.location.assign('/confirmation?lot='+selectedLot+
                 '&start='+this.state.start+
                 '&end='+this.state.end)
