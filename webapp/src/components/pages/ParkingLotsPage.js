@@ -100,7 +100,6 @@ export default class ParkingLotsPage extends React.Component {
                 <Dialogbox
                     onSubmit = {()=>{
                         this.submitReservation()
-                        this.setState({selectedLot:null})
                     }}
                     onCancel = {()=>this.setState({selectedLot:null})}
                     lotSelected={this.state.selectedLot}
@@ -111,10 +110,34 @@ export default class ParkingLotsPage extends React.Component {
 
     }
 
-    confirmedReservation(selectedLot) {
-        window.location.assign('/confirmation?lot='+selectedLot+
-            '&start='+this.state.start+
-            '&end='+this.state.end)
+    confirmedReservation(selectedLot,email) {
+
+
+        var start = new Date()
+        var end = new Date()
+        start.setTime(this.state.start)
+        end.setTime(this.state.end)
+
+        var  corsProxySite = 'https://cors-anywhere.herokuapp.com/'
+        var data = JSON.stringify({
+            "body": 'Lot reservation confirmed at '+ selectedLot +' at ' + start.toLocaleDateString() + ' until ' + end.toLocaleDateString(),
+            "subject": 'Lot Reservation Confirmation',
+            "sendTo": email,
+        });
+        axios({
+            baseURL: corsProxySite+"http://ec2-34-229-81-168.compute-1.amazonaws.com/deva/email-notification/sendemail.php?sendTo="+email+"&body="+ 'Lot reservation confirmed at '+ selectedLot +' at ' + start.toLocaleDateString() + ' until ' + end.toLocaleDateString()+"&subject="+'Lot Reservation Confirmation',
+            timeout: 60000,
+            headers: {'Content-Type': 'application/json'},
+            data:data,
+            method: 'POST'
+        }).then(function (response) {
+            console.log(response.data)
+            this.setState({selectedLot:null})
+
+            window.location.assign('/confirmation?lot='+selectedLot+
+                '&start='+this.state.start+
+                '&end='+this.state.end)
+        }.bind(this))
     }
 
     submitReservation(){
@@ -124,7 +147,7 @@ export default class ParkingLotsPage extends React.Component {
                 var lot = this.state.selectedLot
                 var start = this.state.start
                 var end = this.state.end
-                 console.log(this.state.selectID)
+                 console.log(lot)
 
                 var data = JSON.stringify({
                     "LotID": this.state.selectID,
@@ -142,7 +165,7 @@ export default class ParkingLotsPage extends React.Component {
                     method: 'POST'
                 }).then(function (response) {
                     console.log(response.data)
-                    this.confirmedReservation(lot)
+                    this.confirmedReservation(lot,user.email)
                 }.bind(this))
             } else {
                 // No user is signed in.
@@ -151,6 +174,8 @@ export default class ParkingLotsPage extends React.Component {
         }.bind(this));
 
     }
+
+
 }
 
 
