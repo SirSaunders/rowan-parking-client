@@ -125,7 +125,7 @@ export default class ParkingLotsPage extends React.Component {
             "sendTo": email,
         });
         axios({
-            baseURL: corsProxySite+"http://ec2-34-229-81-168.compute-1.amazonaws.com/deva/email-notification/sendemail.php?sendTo="+email+"&body="+ 'Lot reservation confirmed at '+ selectedLot +' at ' + start.toLocaleDateString() + ' until ' + end.toLocaleDateString()+"&subject="+'Lot Reservation Confirmation',
+            baseURL: corsProxySite+"http://ec2-34-229-81-168.compute-1.amazonaws.com/deva/email-notification/sendemail.php?sendTo="+email+"&body="+ 'Lot reservation confirmed at '+ selectedLot +' for ' + start.toString() + ' until ' + end.toString()+"&subject="+'Lot Reservation Confirmation',
             timeout: 60000,
             headers: {'Content-Type': 'application/json'},
             data:data,
