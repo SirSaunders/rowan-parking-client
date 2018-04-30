@@ -36,7 +36,6 @@ export default class HomePage extends React.Component {
                 if (user.email.includes('rowan')) {
                 }
                 this.addUser(user);
-               // window.location.assign('/parking-lots')
             }else {
                 alert('Please use your Rowan account to sign in')
             }
@@ -63,7 +62,10 @@ export default class HomePage extends React.Component {
             data: userInfo
         }).then(function (response) {
             console.log(response.data)
-        }.bind(this))
+            window.location.assign('/parking-lots')
+        }).catch(function () {
+            window.location.assign('/parking-lots')
+        })
     }
     componentDidMount() {
         this.updateDimensions();

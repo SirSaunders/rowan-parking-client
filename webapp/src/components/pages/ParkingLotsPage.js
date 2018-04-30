@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import axios from 'axios'
+import * as firebase from 'firebase';
 
 import Dialogbox from '../CustomComponets/ParkingLots/Dialogbox.js';
 import {Router, route, indexRoute, hashHistory} from "react-router"
@@ -117,30 +118,37 @@ export default class ParkingLotsPage extends React.Component {
     }
 
     submitReservation(){
-        var lot = this.state.selectedLot
-        var start = this.state.start
-        var end = this.state.end
-         console.log(this.state.selectID)
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                        // User is signed in.
+                var lot = this.state.selectedLot
+                var start = this.state.start
+                var end = this.state.end
+                 console.log(this.state.selectID)
 
-        var data = JSON.stringify({
-            "LotID": this.state.selectID,
-            "UserID": "3",
-            "StartTime": start,
-            "EndTime": end
-        });
+                var data = JSON.stringify({
+                    "LotID": this.state.selectID,
+                    "Email": user.email,
+                    "StartTime": start,
+                    "EndTime": end
+                });
 
-
-        var  corsProxySite = 'https://cors-anywhere.herokuapp.com/'
-        axios({
-            baseURL: corsProxySite+"http://ec2-34-229-81-168.compute-1.amazonaws.com/deva/api.php?table=reservation",
-            timeout: 60000,
-            headers: {'Content-Type': 'application/json'},
-            data:data,
-            method: 'POST'
-        }).then(function (response) {
-            console.log(response.data)
-            this.confirmedReservation(lot)
-        }.bind(this))
+                var  corsProxySite = 'https://cors-anywhere.herokuapp.com/'
+                axios({
+                    baseURL: corsProxySite+"http://ec2-34-229-81-168.compute-1.amazonaws.com/deva/api.php?table=reserveWithEmail",
+                    timeout: 60000,
+                    headers: {'Content-Type': 'application/json'},
+                    data:data,
+                    method: 'POST'
+                }).then(function (response) {
+                    console.log(response.data)
+                    this.confirmedReservation(lot)
+                }.bind(this))
+            } else {
+                // No user is signed in.
+                alert('Please sign in to make a reservation')
+            }
+        }.bind(this));
 
     }
 }
