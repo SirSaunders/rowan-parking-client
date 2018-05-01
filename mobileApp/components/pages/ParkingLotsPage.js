@@ -19,7 +19,7 @@ export default class ParkingLotsPage extends React.Component {
     }
     getData(){
         axios({
-            baseURL: 'http://ec2-34-229-81-168.compute-1.amazonaws.com/deva/api.php?starttime=1520924400&endtime=1520946000&type=1',
+            baseURL: 'http://ec2-34-229-81-168.compute-1.amazonaws.com/deva/api.php?starttime=1520924400&endtime=1520946000&type=2',
             timeout: 60000,
             headers: {'Content-Type': 'application/json'},
             method: 'GET'
