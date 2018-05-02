@@ -60,7 +60,7 @@ export default class ParkingLotsPage extends React.Component {
                                     <View style={styles.itemContainer}>
                                         <Image
                                             style={{width: "100%", height: 200}}
-                                            source={{uri: 'http://images.panda.org/assets/images/pages/welcome/orangutan_1600x1000_279157.jpg'}}
+                                            source={{uri: 'https://www.rowan.edu/home/sites/default/files/Commencement%20on%20Main%20Campus/comparking.png'}}
                                         />
                                         <View style={styles.itemLabel}>
                                             <Text style={styles.lotName}>{item.LotName}</Text>

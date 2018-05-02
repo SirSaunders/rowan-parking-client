@@ -1,12 +1,12 @@
 import React from 'react';
-import { Button, View, Text, ToastAndroid, AsyncStorage } from 'react-native';
+import { Button, View, Text, ToastAndroid, AsyncStorage, Image, Platform } from 'react-native';
 import Expo from 'expo';
 import axios from 'axios'
 
 
 export default class HomeScreen extends React.Component {
     static navigationOptions = {
-        title: 'Home',
+        title: 'Rowan Parking',
         headerLeft: null,
     };
     signIn = async () =>{
@@ -82,12 +82,35 @@ export default class HomeScreen extends React.Component {
     render() {
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Text>Home Screen</Text>
-                <Button
-                    title="Go to Lots"
-                    onPress={() => //this.props.navigation.navigate('ParkingLotsPage')
-                        this.signIn()}
-                />
+                <View style = {Platform.select({
+                    ios: {
+                        width: "98%",
+                        shadowColor: '#000',
+                        shadowOffset: { width: 0, height: 2 },
+                        shadowOpacity: 0.8,
+                        shadowRadius: 2,
+                    },
+                    android: {
+                        width: "98%",
+                        elevation: 5,
+                    },
+                })}>
+                    <Image
+                        //style={{width: "90%"}}
+                        source={ require('mobileApp/assets/Logo.png')}
+                    />
+                </View>
+                <View style={{height:"10%"}}/>
+                <View style={{width: "50%"}}>
+                    <Button
+                        color="#FF0000"
+                        title="Sign in"
+                        large
+                        onPress={() => //this.props.navigation.navigate('ParkingLotsPage')
+                            this.signIn()}
+                    />
+                </View>
+
             </View>
         );
     }
