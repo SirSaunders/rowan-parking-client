@@ -9,6 +9,8 @@ export default class HomeScreen extends React.Component {
         title: 'Rowan Parking',
         headerLeft: null,
     };
+
+
     signIn = async () =>{
 
         let result = await Expo.AuthSession.startAsync({

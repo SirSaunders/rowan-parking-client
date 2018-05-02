@@ -100,70 +100,69 @@ export default class ParkingLotsPage extends React.Component {
     render() {
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <DatePicker
-                    style={{width: 200}}
-                    date={this.dateToString(new Date())}
-                    mode="date"
-                    placeholder="select date"
-                    format="YYYY-MM-DD"
-                    minDate={this.dateToString(new Date())}
-                    confirmBtnText="Confirm"
-                    cancelBtnText="Cancel"
-                    customStyles={{
-                        dateIcon: {
-                            position: 'absolute',
-                            left: 0,
-                            top: 4,
-                            marginLeft: 0
-                        },
-                        dateInput: {
-                            marginLeft: 36
-                        }
-                    }}
-                    onDateChange={(date) => {this.setState({currentDate: new Date(date)})}}
-                />
-                <DatePicker
-                    style={{width: 200}}
-                    date={this.dateToHHMMString(new Date(this.state.start))}
-                    mode="time"
-                    placeholder="select date"
-                    confirmBtnText="Confirm"
-                    cancelBtnText="Cancel"
-                    format="h:mm a"
-                    customStyles={{
-                        dateIcon: {
-                            position: 'absolute',
-                            left: 0,
-                            top: 4,
-                            marginLeft: 0
-                        },
-                        dateInput: {
-                            marginLeft: 36
-                        }
-                    }}
-                    onDateChange={(date) => {this.timeChange(this.timeStringToDate(date),null)}}
-                />
-                <DatePicker
-                    style={{width: 200}}
-                    date={this.dateToHHMMString(new Date(this.state.end))}
-                    mode="time"
-                    format="h:mm a"
-                    placeholder="select time"
-                    confirmBtnText="Confirm"
-                    cancelBtnText="Cancel"
-                    customStyles={{
-                        dateIcon: {
-                            position: 'absolute',
-                            left: 0,
-                            top: 4,
-                            marginLeft: 0
-                        },
-                        dateInput: {
-                            marginLeft: 36
-                        }
-                    }}
-                    onDateChange={(date) => {this.timeChange(null,this.timeStringToDate(date))}}
-                />
+                <View style={{ height: 50, flexDirection: 'row'} }>
+                        <DatePicker
+                            style={{width: '25%'}}
+                            date={this.dateToString(new Date())}
+                            mode="date"
+                            placeholder="select date"
+                            format="YYYY-MM-DD"
+                            minDate={this.dateToString(new Date())}
+                            confirmBtnText="Confirm"
+                            cancelBtnText="Cancel"
+                            customStyles={{
+                                dateIcon: {
+                                    position: 'absolute',
+                                    left: 0,
+                                    top: 4,
+                                    marginLeft: 0
+                                },
+                                dateInput: {
+                                    marginLeft: 36
+                                }
+                            }}
+                            onDateChange={(date) => {this.setState({currentDate: new Date(date)})}}
+                        />
+                    <View style={{width: '12%', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                         <Text  style={{textAlign: 'center'}}> Start Time</Text>
+                    </View>
+                        <DatePicker
+                            style={{width: '25%'}}
+                            date={this.dateToHHMMString(new Date(this.state.start))}
+                            mode="time"
+                            placeholder="select date"
+                            confirmBtnText="Confirm"
+                            cancelBtnText="Cancel"
+                            format="h:mm a"
+                            showIcon={false}
+
+                            customStyles={{
+                                dateInput: {
+                                    marginLeft: 0
+                                }
+
+                            }}
+                            onDateChange={(date) => {this.timeChange(this.timeStringToDate(date),null)}}
+                        />
+                    <View style={{ justifyContent: 'center', alignItems: 'center',width: '12%',flex: 1 }}>
+                        <Text style={{textAlign: 'center'}}> End Time</Text>
+                    </View>
+                        <DatePicker
+                            style={{width: '25%', margin: 0}}
+                            date={this.dateToHHMMString(new Date(this.state.end))}
+                            mode="time"
+                            format="h:mm a"
+                            placeholder="select time"
+                            confirmBtnText="Confirm"
+                            cancelBtnText="Cancel"
+                            showIcon={false}
+                            customStyles={{
+
+
+                            }}
+                            onDateChange={(date) => {this.timeChange(null,this.timeStringToDate(date))}}
+                        />
+                </View>
                 <View style={styles.container}>
                     <FlatList
                         data={this.state.lots}
