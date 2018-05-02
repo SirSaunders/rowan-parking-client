@@ -138,11 +138,12 @@ export default class HomeScreen extends React.Component {
             "isDisable": "0",
             "status": "1"
         }
+        console.log('adding user')
 
         var  corsProxySite = 'https://cors-anywhere.herokuapp.com/'
         axios({
             baseURL: corsProxySite +'http://ec2-34-229-81-168.compute-1.amazonaws.com/deva/api.php?table=user',
-            timeout: 60000,
+            timeout: 5000,
             headers: {'Content-Type': 'application/json'},
             method: 'POST',
             data: userInfo
