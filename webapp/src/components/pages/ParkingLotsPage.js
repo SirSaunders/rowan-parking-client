@@ -59,7 +59,7 @@ export default class ParkingLotsPage extends React.Component {
 
     }
     dateOffest(mili){
-        return mili -5 * 60 *1000
+        return mili -4 * 60 * 60 *1000
     }
     timeChange(start, end){
         this.setState({start:start.getTime()})

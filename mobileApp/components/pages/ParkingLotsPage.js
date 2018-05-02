@@ -32,6 +32,7 @@ export default class ParkingLotsPage extends React.Component {
         this.getData()
     }
     getData(){
+        console.log( 'http://ec2-34-229-81-168.compute-1.amazonaws.com/deva/api.php?starttime='+this.dateOffest(this.state.start)+'&endtime='+this.dateOffest(this.state.end)+'&type=2')
         axios({
             baseURL: 'http://ec2-34-229-81-168.compute-1.amazonaws.com/deva/api.php?starttime='+this.dateOffest(this.state.start)+'&endtime='+this.dateOffest(this.state.end)+'&type=2',
             timeout: 60000,
@@ -51,7 +52,8 @@ export default class ParkingLotsPage extends React.Component {
     }
     //because backend said they wont fix doing thing in UTC but we need EST
     dateOffest(mili){
-       return mili -5 * 60 *1000
+        console.log(mili)
+       return mili -4 * 60 *60 *1000
     }
 
     dateToString(date){
@@ -123,7 +125,8 @@ export default class ParkingLotsPage extends React.Component {
                             }}
                             onDateChange={(date) => {{
                                 this.setState({currentDate: new Date(date)})
-                                this.timeChange(null,null)}
+                                setTimeout(()=>{this.timeChange(null,null)},500);
+                                }
                             }}
                         />
                     <View style={{width: '12%', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
