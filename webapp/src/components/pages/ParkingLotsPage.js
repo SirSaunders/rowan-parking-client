@@ -41,7 +41,7 @@ export default class ParkingLotsPage extends React.Component {
     getData(start,end){
        var  corsProxySite = 'https://cors-anywhere.herokuapp.com/'
         axios({
-            baseURL: corsProxySite +'http://ec2-34-229-81-168.compute-1.amazonaws.com/deva/api.php?starttime='+start+'&endtime='+end+'&type=2',
+            baseURL: corsProxySite +'http://ec2-34-229-81-168.compute-1.amazonaws.com/deva/api.php?starttime='+this.dateOffest(start)+'&endtime='+this.dateOffest(end)+'&type=2',
             timeout: 60000,
             headers: {'Content-Type': 'application/json'},
             method: 'GET'
@@ -57,6 +57,9 @@ export default class ParkingLotsPage extends React.Component {
 
 
 
+    }
+    dateOffest(mili){
+        return mili -5 * 60 *1000
     }
     timeChange(start, end){
         this.setState({start:start.getTime()})
@@ -151,8 +154,8 @@ export default class ParkingLotsPage extends React.Component {
                 var data = JSON.stringify({
                     "LotID": this.state.selectID,
                     "Email": user.email,
-                    "StartTime": start,
-                    "EndTime": end
+                    "StartTime": this.dateOffest(start),
+                    "EndTime": this.dateOffest(end)
                 });
 
                 var  corsProxySite = 'https://cors-anywhere.herokuapp.com/'

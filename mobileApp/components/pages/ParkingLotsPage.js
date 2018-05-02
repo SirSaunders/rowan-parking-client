@@ -103,7 +103,7 @@ export default class ParkingLotsPage extends React.Component {
                 <View style={{ height: 50, flexDirection: 'row'} }>
                         <DatePicker
                             style={{width: '34%'}}
-                            date={this.dateToString(new Date())}
+                            date={this.dateToString(new Date(this.state.start))}
                             mode="date"
                             placeholder="select date"
                             format="YYYY-MM-DD"
@@ -121,7 +121,10 @@ export default class ParkingLotsPage extends React.Component {
                                     marginLeft: 36
                                 }
                             }}
-                            onDateChange={(date) => {this.setState({currentDate: new Date(date)})}}
+                            onDateChange={(date) => {{
+                                this.setState({currentDate: new Date(date)})
+                                this.timeChange(null,null)}
+                            }}
                         />
                     <View style={{width: '12%', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                          <Text  style={{textAlign: 'center'}}> Start Time</Text>
@@ -204,8 +207,8 @@ export default class ParkingLotsPage extends React.Component {
         }
         var date = this.state.currentDate
 
-        start.setDate(date.getDate())
-        end.setDate(date.getDate())
+        start.setDate(date.getDate()+1) //add one because count starts at 0
+        end.setDate(date.getDate()+1)
         this.setState({start:start.getTime(),end:end.getTime()})
         console.log('time update: start =' + this.state.start +' end= '+this.state.end)
         this.getData()
