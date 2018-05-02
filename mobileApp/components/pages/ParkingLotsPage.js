@@ -26,7 +26,7 @@ export default class ParkingLotsPage extends React.Component {
         this.state = {openDialog: false,selectedLot:null,lots:[],start:start.getTime(),end:end.getTime(),selectID:null, currentDate:start}
     }
     static navigationOptions = {
-        title: 'Parking Lots Page',
+        title: 'Parking Lots',
     };
     componentWillMount(){
         this.getData()
@@ -102,7 +102,7 @@ export default class ParkingLotsPage extends React.Component {
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <View style={{ height: 50, flexDirection: 'row'} }>
                         <DatePicker
-                            style={{width: '25%'}}
+                            style={{width: '34%'}}
                             date={this.dateToString(new Date())}
                             mode="date"
                             placeholder="select date"
@@ -127,7 +127,7 @@ export default class ParkingLotsPage extends React.Component {
                          <Text  style={{textAlign: 'center'}}> Start Time</Text>
                     </View>
                         <DatePicker
-                            style={{width: '25%'}}
+                            style={{width: '19%'}}
                             date={this.dateToHHMMString(new Date(this.state.start))}
                             mode="time"
                             placeholder="select date"
@@ -148,7 +148,7 @@ export default class ParkingLotsPage extends React.Component {
                         <Text style={{textAlign: 'center'}}> End Time</Text>
                     </View>
                         <DatePicker
-                            style={{width: '25%', margin: 0}}
+                            style={{width: '19%', margin: 2}}
                             date={this.dateToHHMMString(new Date(this.state.end))}
                             mode="time"
                             format="h:mm a"
@@ -212,7 +212,6 @@ export default class ParkingLotsPage extends React.Component {
     }
 
     selectedLot(id,lotName) {
-        ToastAndroid.show(id , ToastAndroid.SHORT);
 
         Alert.alert(
             'Confirm Reservation',
@@ -245,7 +244,7 @@ export default class ParkingLotsPage extends React.Component {
             "sendTo": email,
         });
         axios({
-            baseURL: "http://ec2-34-229-81-168.compute-1.amazonaws.com/deva/email-notification/sendemail.php?sendTo="+email+"&body="+ 'Lot reservation confirmed at '+ selectedLot +' for ' + start.toString() + ' until ' + end.toString()+"&subject="+'Lot Reservation Confirmation',
+            baseURL: "http://ec2-34-229-81-168.compute-1.amazonaws.com/deva/email-notification/sendemail.php?sendTo="+email+"&body="+ 'Lot reservation confirmed for '+ selectedLot +' for ' + start.toString() + ' until ' + end.toString()+"&subject="+'Lot Reservation Confirmation',
             timeout: 60000,
             headers: {'Content-Type': 'application/json'},
             data:data,
@@ -254,7 +253,7 @@ export default class ParkingLotsPage extends React.Component {
             console.log(response.data)
             this.setState({selectedLot:null})
             //window.location.assign('/confirmation?lot='+selectedLot+'&start='+this.state.start+'&end='+this.state.end)
-            this.props.navigation.navigate('ConfirmationPage')
+            this.props.navigation.navigate('ConfirmationPage',{'info':'Lot reservation confirmed at '+ selectedLot +' for ' + start.toLocaleDateString() + ' until ' + end.toLocaleDateString()})
 
     }.bind(this))
             .catch(function (error) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, View, Text, ToastAndroid, AsyncStorage, Image, Platform } from 'react-native';
+import { Button, View, Text, AsyncStorage, Image, Platform } from 'react-native';
 import Expo from 'expo';
 import axios from 'axios'
 
