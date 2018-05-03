@@ -39,12 +39,12 @@ function createData(id, time, lot ) {
 var title ="Default user";
 var userPhoto;
 const data = [
-    createData('#234789234', '2:00 PM EST to 4:00 PM EST', 'LOT A'),
-    createData('#327408923',  '2:00 PM EST to 4:00 PM EST', 'LOT B'),
-    createData('#214738902',  '2:00 PM EST to 4:00 PM EST', 'LOT C' ),
-    createData('#234789234', '2:00 PM EST to 4:00 PM EST', 'LOT A'),
-    createData('#327408923',  '2:00 PM EST to 4:00 PM EST', 'LOT B'),
-    createData('#214738902',  '2:00 PM EST to 4:00 PM EST', 'LOT C' ),
+    createData('#23', '2:00 PM EST to 4:00 PM EST', 'LOT A'),
+    createData('#32',  '2:00 PM EST to 4:00 PM EST', 'LOT B'),
+    createData('#108',  '2:00 PM EST to 4:00 PM EST', 'LOT C' ),
+    createData('#115', '2:00 PM EST to 4:00 PM EST', 'LOT A'),
+    createData('#120',  '2:00 PM EST to 4:00 PM EST', 'LOT B'),
+    createData('#214',  '2:00 PM EST to 4:00 PM EST', 'LOT C' ),
 
 ];
 
@@ -116,7 +116,7 @@ export default class ProfilePage extends React.Component {
 
             if(user != null ) {
                 this.setState( {userName: user.displayName, userPhoto: user.photoURL });
-               
+
 
             }
         }.bind(this));
