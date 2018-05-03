@@ -27,6 +27,17 @@ export default class ParkingLotsPage extends React.Component {
     }
     static navigationOptions = {
         title: 'Parking Lots',
+        headerTitleStyle: {
+            color: '#f8f8f8'
+        },
+        headerStyle:{
+            backgroundColor:'#00c0da'
+        },
+        headerTintColor: '#f8f8f8'
+        ,
+        headerBackTitleStyle: {
+            color: '#f8f8f8'
+        }
     };
     componentWillMount(){
         this.getData()

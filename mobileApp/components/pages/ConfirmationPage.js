@@ -11,6 +11,19 @@ export default class ConfirmationPage extends React.Component {
     static navigationOptions = {
         title: 'Confirmation',
         headerLeft: null,
+        headerTitleStyle: {
+            color: '#f8f8f8'
+        },
+        headerStyle:{
+            backgroundColor:'#00c0da'
+        },
+        headerTintColor: '#00c0da'
+        ,
+        headerBackTitleStyle: {
+            color: '#f8f8f8'
+        },
+
+
     };
 
     render() {
@@ -35,8 +48,6 @@ export default class ConfirmationPage extends React.Component {
                             alignSelf: 'center',
                             height: 400,
                             width: 400,
-                            borderWidth: 1,
-                            borderRadius: 75
                         }}
                         resizeMode="stretch"
                         source={ require('mobileApp/assets/confirm.png')}

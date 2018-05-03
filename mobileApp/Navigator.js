@@ -20,7 +20,8 @@ const RootStack = StackNavigator(
     },
     {
         initialRouteName: 'Home',
-    }
+    },
+
 );
 
 export default class Navigator extends React.Component {
