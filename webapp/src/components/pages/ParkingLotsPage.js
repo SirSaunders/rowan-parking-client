@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import axios from 'axios'
+import * as firebase from 'firebase';
 
 import Dialogbox from '../CustomComponets/ParkingLots/Dialogbox.js';
 import {Router, route, indexRoute, hashHistory} from "react-router"
@@ -99,7 +100,6 @@ export default class ParkingLotsPage extends React.Component {
                 <Dialogbox
                     onSubmit = {()=>{
                         this.submitReservation()
-                        this.setState({selectedLot:null})
                     }}
                     onCancel = {()=>this.setState({selectedLot:null})}
                     lotSelected={this.state.selectedLot}
@@ -110,39 +110,71 @@ export default class ParkingLotsPage extends React.Component {
 
     }
 
-    confirmedReservation(selectedLot) {
-        window.location.assign('/confirmation?lot='+selectedLot+
-            '&start='+this.state.start+
-            '&end='+this.state.end)
-    }
+    confirmedReservation(selectedLot,email) {
 
-    submitReservation(){
-        var lot = this.state.selectedLot
-        var start = this.state.start
-        var end = this.state.end
-         console.log(this.state.selectID)
 
-        var data = JSON.stringify({
-            "LotID": this.state.selectID,
-            "UserID": "3",
-            "StartTime": start,
-            "EndTime": end
-        });
-
+        var start = new Date()
+        var end = new Date()
+        start.setTime(this.state.start)
+        end.setTime(this.state.end)
 
         var  corsProxySite = 'https://cors-anywhere.herokuapp.com/'
+        var data = JSON.stringify({
+            "body": 'Lot reservation confirmed at '+ selectedLot +' at ' + start.toLocaleDateString() + ' until ' + end.toLocaleDateString(),
+            "subject": 'Lot Reservation Confirmation',
+            "sendTo": email,
+        });
         axios({
-            baseURL: corsProxySite+"http://ec2-34-229-81-168.compute-1.amazonaws.com/deva/api.php?table=reservation",
+            baseURL: corsProxySite+"http://ec2-34-229-81-168.compute-1.amazonaws.com/deva/email-notification/sendemail.php?sendTo="+email+"&body="+ 'Lot reservation confirmed at '+ selectedLot +' for ' + start.toString() + ' until ' + end.toString()+"&subject="+'Lot Reservation Confirmation',
             timeout: 60000,
             headers: {'Content-Type': 'application/json'},
             data:data,
             method: 'POST'
         }).then(function (response) {
             console.log(response.data)
-            this.confirmedReservation(lot)
+            this.setState({selectedLot:null})
+            window.location.assign('/confirmation?lot='+selectedLot+
+                '&start='+this.state.start+
+                '&end='+this.state.end)
         }.bind(this))
+    }
+
+    submitReservation(){
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                        // User is signed in.
+                var lot = this.state.selectedLot
+                var start = this.state.start
+                var end = this.state.end
+                 console.log(lot)
+
+                var data = JSON.stringify({
+                    "LotID": this.state.selectID,
+                    "Email": user.email,
+                    "StartTime": start,
+                    "EndTime": end
+                });
+
+                var  corsProxySite = 'https://cors-anywhere.herokuapp.com/'
+                axios({
+                    baseURL: corsProxySite+"http://ec2-34-229-81-168.compute-1.amazonaws.com/deva/api.php?table=reserveWithEmail",
+                    timeout: 60000,
+                    headers: {'Content-Type': 'application/json'},
+                    data:data,
+                    method: 'POST'
+                }).then(function (response) {
+                    console.log(response.data)
+                    this.confirmedReservation(lot,user.email)
+                }.bind(this))
+            } else {
+                // No user is signed in.
+                alert('Please sign in to make a reservation')
+            }
+        }.bind(this));
 
     }
+
+
 }
 
 

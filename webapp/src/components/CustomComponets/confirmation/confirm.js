@@ -17,8 +17,8 @@ const styles = {
 
         },
         '> img': {
-            maxWidth: '70vw',
-            maxHeight: '70vw',
+            maxWidth: '30vw',
+            maxHeight: '30vw',
             margin: '0 auto',
 
         },

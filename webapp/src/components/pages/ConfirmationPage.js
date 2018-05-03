@@ -36,7 +36,7 @@ export default class ConfirmationPage extends React.Component {
             <Video/>
             <Image/>
 
-            <Paper className="container" elevation={3}> <Typography color="primary" variant="display2"  align="center" gutterBottom>
+            <Paper className="container" style={{margin:'50px'}} elevation={3}> <Typography color="primary" variant="display2"  align="center" gutterBottom>
                 Confirmed that you reserved lot <b>{this.state.lot}</b> starting at
                 <b> {this.miliToDate(this.state.start).toString()}
                 </b>  until <b>{this.miliToDate(this.state.end).toString()}</b>

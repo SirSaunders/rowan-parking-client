@@ -11,6 +11,7 @@ import * as firebase from 'firebase';
 import Paper from 'material-ui-next/Paper';
 import Grid from 'material-ui-next/Grid';
 
+import axios from 'axios'
 
 const styles = theme => ({
     root: {
@@ -30,11 +31,41 @@ export default class HomePage extends React.Component {
         firebase.auth().onAuthStateChanged(function (user){
             console.log(user)
             //add sign out button before uncommenting
-            if(user != null) {
-                window.location.assign('/parking-lots')
-            }
-        });
 
+            if(user != null ) {
+                if (user.email.includes('rowan')) {
+                    this.addUser(user);
+                }else {
+                    alert('Please use your Rowan account to sign in')
+                }
+            }
+        }.bind(this));
+
+    }
+
+    addUser(user){
+        var userInfo = {
+            "name" : user.displayName,
+            "email": user.email,
+            "username": user.uid,
+            "password": "password",
+            "isDisable": "0",
+            "status": "1"
+        }
+
+        var  corsProxySite = 'https://cors-anywhere.herokuapp.com/'
+        axios({
+            baseURL: corsProxySite +'http://ec2-34-229-81-168.compute-1.amazonaws.com/deva/api.php?table=user',
+            timeout: 60000,
+            headers: {'Content-Type': 'application/json'},
+            method: 'POST',
+            data: userInfo
+        }).then(function (response) {
+            console.log(response.data)
+            window.location.assign('/parking-lots')
+        }).catch(function () {
+            window.location.assign('/parking-lots')
+        })
     }
     componentDidMount() {
         this.updateDimensions();
