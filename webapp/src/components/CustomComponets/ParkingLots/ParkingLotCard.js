@@ -2,6 +2,7 @@ import React from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
+
 import '../../../css/ParkingLotCard.css';
 
 export default class ParkingLotCard extends React.Component {
