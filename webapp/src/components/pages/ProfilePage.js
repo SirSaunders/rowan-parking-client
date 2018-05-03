@@ -35,7 +35,7 @@ function createData(id, time, lot ) {
     id += 1;
     return { id, time, lot};
 }
-var UserName = " replace";
+
 var title ="Default user";
 var userPhoto;
 const data = [
@@ -104,25 +104,27 @@ const styles = theme => ({
 export default class ProfilePage extends React.Component {
     constructor(props) {
         super(props);
-      ////UserName= firebase.auth().currentUser.displayName;
-      // UserName=firebase.UserInfo.getDisplayName();
 
-        firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-                // User is signed in.
-                UserName= user.displayName;
-                console.log(user.displayName);
-                userPhoto = user.photoURL;
-            } else {
-                // No user is signed in.
+        this.state = {userName: null, userPhoto: null};
+
+
+    }
+
+    componentDidMount() {
+        firebase.auth().onAuthStateChanged(function (user){
+            console.log(user);
+
+            if(user != null ) {
+                this.setState( {userName: user.displayName, userPhoto: user.photoURL });
+               
+
             }
-        });
+        }.bind(this));
+
 
     }
 
     render() {
-
-
 
         return <div style={{ padding: 50, height: "100%"}}className= "App" >
 
@@ -166,12 +168,12 @@ export default class ProfilePage extends React.Component {
                         <Card>
                             <CardMedia
                                 className ="App-logo"
-                                image=   "https://www.maxpixel.net/static/photo/1x/Reflection-Ritual-Woman-Meditation-Person-Swim-2754903.jpg"
+                                image=   {this.state.userPhoto}
                                 title="user"
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="display1" component="display3">
-                                    {UserName}
+                                    {this.state.userName}
                                 </Typography>
                                 <Typography variant ="headline" component="display1">
                                     {title}
