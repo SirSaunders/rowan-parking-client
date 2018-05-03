@@ -35,8 +35,9 @@ function createData(id, time, lot ) {
     id += 1;
     return { id, time, lot};
 }
-var UserName = "user i123";
-
+var UserName = " replace";
+var title ="Default user";
+var userPhoto;
 const data = [
     createData('#234789234', '2:00 PM EST to 4:00 PM EST', 'LOT A'),
     createData('#327408923',  '2:00 PM EST to 4:00 PM EST', 'LOT B'),
@@ -103,14 +104,24 @@ const styles = theme => ({
 export default class ProfilePage extends React.Component {
     constructor(props) {
         super(props);
-      // UserName= firebase.auth().currentUser.displayName;
+      ////UserName= firebase.auth().currentUser.displayName;
       // UserName=firebase.UserInfo.getDisplayName();
 
-
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                // User is signed in.
+                UserName= user.displayName;
+                console.log(user.displayName);
+                userPhoto = user.photoURL;
+            } else {
+                // No user is signed in.
+            }
+        });
 
     }
 
     render() {
+
 
 
         return <div style={{ padding: 50, height: "100%"}}className= "App" >
@@ -163,7 +174,7 @@ export default class ProfilePage extends React.Component {
                                     {UserName}
                                 </Typography>
                                 <Typography variant ="headline" component="display1">
-                                    • student
+                                    {title}
                                 </Typography>
                             </CardContent>
                             {/*<CardActions>*/}
