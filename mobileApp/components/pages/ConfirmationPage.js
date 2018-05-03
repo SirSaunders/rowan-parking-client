@@ -30,19 +30,9 @@ export default class ConfirmationPage extends React.Component {
         return (
 
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <View style = {Platform.select({
-                    ios: {
-                        width: "100%",
-                        shadowColor: '#000',
-                        shadowOffset: { width: 0, height: 2 },
-                        shadowOpacity: 0.8,
-                        shadowRadius: 2,
-                    },
-                    android: {
-                        width: "100%",
-                        elevation: 5,
-                    },
-                })}>
+                <View style = {{
+                    width: "100%",
+                }}>
                     <Image
                         style={{
                             alignSelf: 'center',

@@ -270,7 +270,7 @@ export default class ParkingLotsPage extends React.Component {
             console.log(response.data)
             this.setState({selectedLot:null})
             //window.location.assign('/confirmation?lot='+selectedLot+'&start='+this.state.start+'&end='+this.state.end)
-            this.props.navigation.navigate('ConfirmationPage',{'info':'Lot reservation confirmed at '+ selectedLot +' for ' + start.toLocaleDateString() + ' until ' + end.toLocaleDateString()})
+            this.props.navigation.navigate('ConfirmationPage',{'info':'Lot reservation confirmed for '+ selectedLot +' for ' + start.toString() + ' until ' + end.toString()})
 
     }.bind(this))
             .catch(function (error) {
