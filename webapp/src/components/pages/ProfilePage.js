@@ -35,15 +35,16 @@ function createData(id, time, lot ) {
     id += 1;
     return { id, time, lot};
 }
-var UserName = "user i123";
 
+var title ="Default user";
+var userPhoto;
 const data = [
-    createData('#234789234', '2:00 PM EST to 4:00 PM EST', 'LOT A'),
-    createData('#327408923',  '2:00 PM EST to 4:00 PM EST', 'LOT B'),
-    createData('#214738902',  '2:00 PM EST to 4:00 PM EST', 'LOT C' ),
-    createData('#234789234', '2:00 PM EST to 4:00 PM EST', 'LOT A'),
-    createData('#327408923',  '2:00 PM EST to 4:00 PM EST', 'LOT B'),
-    createData('#214738902',  '2:00 PM EST to 4:00 PM EST', 'LOT C' ),
+    createData('#23', '2:00 PM EST to 4:00 PM EST', 'LOT A'),
+    createData('#32',  '2:00 PM EST to 4:00 PM EST', 'LOT B'),
+    createData('#108',  '2:00 PM EST to 4:00 PM EST', 'LOT C' ),
+    createData('#115', '2:00 PM EST to 4:00 PM EST', 'LOT A'),
+    createData('#120',  '2:00 PM EST to 4:00 PM EST', 'LOT B'),
+    createData('#214',  '2:00 PM EST to 4:00 PM EST', 'LOT C' ),
 
 ];
 
@@ -103,15 +104,27 @@ const styles = theme => ({
 export default class ProfilePage extends React.Component {
     constructor(props) {
         super(props);
-      // UserName= firebase.auth().currentUser.displayName;
-      // UserName=firebase.UserInfo.getDisplayName();
 
+        this.state = {userName: null, userPhoto: null};
+
+
+    }
+
+    componentDidMount() {
+        firebase.auth().onAuthStateChanged(function (user){
+            console.log(user);
+
+            if(user != null ) {
+                this.setState( {userName: user.displayName, userPhoto: user.photoURL });
+
+
+            }
+        }.bind(this));
 
 
     }
 
     render() {
-
 
         return <div style={{ padding: 50, height: "100%"}}className= "App" >
 
@@ -155,15 +168,15 @@ export default class ProfilePage extends React.Component {
                         <Card>
                             <CardMedia
                                 className ="App-logo"
-                                image=   "https://www.maxpixel.net/static/photo/1x/Reflection-Ritual-Woman-Meditation-Person-Swim-2754903.jpg"
+                                image=   {this.state.userPhoto}
                                 title="user"
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="display1" component="display3">
-                                    {UserName}
+                                    {this.state.userName}
                                 </Typography>
                                 <Typography variant ="headline" component="display1">
-                                    • student
+                                    {title}
                                 </Typography>
                             </CardContent>
                             {/*<CardActions>*/}

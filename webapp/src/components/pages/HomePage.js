@@ -26,6 +26,7 @@ const styles = theme => ({
 
 export default class HomePage extends React.Component {
     constructor(props) {
+
         super(props);
         this.state = { width: window.innerWidth };
         firebase.auth().onAuthStateChanged(function (user){
@@ -36,8 +37,7 @@ export default class HomePage extends React.Component {
                 if (user.email.includes('rowan')) {
                     this.addUser(user);
                 }else {
-                    alert('Please use your Rowan account to sign in')
-                }
+                    alert('Please use your Rowan account to sign in')}
             }
         }.bind(this));
 
