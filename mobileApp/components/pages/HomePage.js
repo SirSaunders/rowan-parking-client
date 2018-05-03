@@ -8,6 +8,15 @@ export default class HomeScreen extends React.Component {
     static navigationOptions = {
         title: 'Rowan Parking',
         headerLeft: null,
+        headerTitleStyle: {
+            color: '#f8f8f8'
+        },
+        headerStyle:{
+            backgroundColor:'#00c0da'
+        },
+        headerTintColor: {
+            backgroundColor:'#00c0da'
+        }
     };
 
 
@@ -84,21 +93,10 @@ export default class HomeScreen extends React.Component {
     render() {
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <View style = {Platform.select({
-                    ios: {
-                        width: "98%",
-                        shadowColor: '#000',
-                        shadowOffset: { width: 0, height: 2 },
-                        shadowOpacity: 0.8,
-                        shadowRadius: 2,
-                    },
-                    android: {
-                        width: "98%",
-                        elevation: 5,
-                    },
-                })}>
+                <View style = {{width: "98%"}}>
                     <Image
                         //style={{width: "90%"}}
+                        style={{alignSelf: 'center'}}
                         source={ require('mobileApp/assets/Logo.png')}
                     />
                 </View>

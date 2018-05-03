@@ -11,32 +11,33 @@ export default class ConfirmationPage extends React.Component {
     static navigationOptions = {
         title: 'Confirmation',
         headerLeft: null,
+        headerTitleStyle: {
+            color: '#f8f8f8'
+        },
+        headerStyle:{
+            backgroundColor:'#00c0da'
+        },
+        headerTintColor: '#00c0da'
+        ,
+        headerBackTitleStyle: {
+            color: '#f8f8f8'
+        },
+
+
     };
 
     render() {
         return (
 
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <View style = {Platform.select({
-                    ios: {
-                        width: "100%",
-                        shadowColor: '#000',
-                        shadowOffset: { width: 0, height: 2 },
-                        shadowOpacity: 0.8,
-                        shadowRadius: 2,
-                    },
-                    android: {
-                        width: "100%",
-                        elevation: 5,
-                    },
-                })}>
+                <View style = {{
+                    width: "100%",
+                }}>
                     <Image
                         style={{
                             alignSelf: 'center',
                             height: 400,
                             width: 400,
-                            borderWidth: 1,
-                            borderRadius: 75
                         }}
                         resizeMode="stretch"
                         source={ require('mobileApp/assets/confirm.png')}
